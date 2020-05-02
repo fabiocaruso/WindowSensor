@@ -7,6 +7,10 @@
 const char* ssid = STASSID;
 const char* password = STAPSK;
 
+// NOTE: For ESP-01 need to set TOOLS>Flash Size>512 ( no SPIFFS) (https://github.com/esp8266/Arduino/issues/1196#issuecomment-164433585)
+// NOTE: For AI-THINKER ESP you need to set TOOLS>Flash Size>4MB
+// NOTE: On windows you need to allow network traffic over python in the firewall settings (https://github.com/esp8266/Arduino/issues/3187#issuecomment-299409258)
+
 void initOTA() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
@@ -17,7 +21,7 @@ void initOTA() {
   }
 
   // Port defaults to 8266
-  // ArduinoOTA.setPort(8266);
+  ArduinoOTA.setPort(65200);
 
   // Hostname defaults to esp8266-[ChipID]
   ArduinoOTA.setHostname(WSID);
